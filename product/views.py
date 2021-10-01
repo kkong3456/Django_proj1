@@ -42,10 +42,12 @@ class ProductList(ListView):
 
     def get_queryset(self):
         print(f'self.request.GET is {self.request.GET}')
-        if self.request.GET:
+        if self.request.method=='GET':
+            print('xxxxxxxxxxxxxxxxxx',dir(self.request.session))
+            print('yyyyyyyyyyyyyyyyyy',self.request.read())
 
-            search_word=self.request.GET['s']
-            print(f'search word is {search_word}')
+            # search_word=self.request.GET['s']
+            # print(f'search word is {search_word}')
         else:
             qs=super().get_queryset()
             print(f'qs is {qs}')
