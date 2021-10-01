@@ -38,6 +38,27 @@ class ProductList(ListView):
     template_name = 'product.html'
     context_object_name = 'product_list'
     paginate_by = 3
+   
+
+    def get_queryset(self):
+        print(f'self.request.GET is {self.request.GET}')
+        if self.request.GET:
+
+            search_word=self.request.GET['s']
+            print(f'search word is {search_word}')
+        else:
+            qs=super().get_queryset()
+            print(f'qs is {qs}')
+            # search_word=self.request.GET.get('s',None)
+            # print(f'self.request.GET is {search_word}')
+            # if self.request.GET('s'):
+            #     print(f'Product is ,{Product.objects.filter()}')
+        return Product.objects.all()
+    
+     
+
+    # def get(self,request,*args,**kwargs):
+    #     return self.retrieve(request,*args,**kwargs)
 
 @method_decorator(admin_required, name='dispatch')
 class ProductCreate(FormView):
