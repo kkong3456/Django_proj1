@@ -42,8 +42,6 @@ class ProductList(ListView):
     ordering='register_date'
     page_kwarg='page'
 
-   
-   
 
     def get_queryset(self):     
         # print(f'self.request.GET is {self.request.GET.get(key="s")}')
