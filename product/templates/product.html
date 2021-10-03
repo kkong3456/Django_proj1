@@ -18,12 +18,22 @@
     $("#product-" + id).popover('hide');
   }
 
+{% comment %} 추가2 {% endcomment %}
   const do_search=()=>{
     {% comment %} console.log('xxx is ','/product/?s='+jQuery("#xxx").val()) {% endcomment %}
     window.location.href='/product/?s='+jQuery("#xxx").val();
   }
+<<<<<<< HEAD
   $(document).ready(function () {
     
+=======
+
+  {% comment %} 추가2엔드 {% endcomment %}
+
+  $(document).ready(function () {
+  
+    })
+>>>>>>> 7d33ea541317b3b907e7618106820dc8e91fcd84
   });
 </script>
 {% endblock %}
@@ -63,6 +73,8 @@
   </div>
 </div>
 <div class="row mt-5">
+
+{% comment %} 추가3 {% endcomment %}
 <div class="col-12">
   {% comment %} {% if is_paginated %} {% endcomment %}
   <nav aria-label='...'>
@@ -87,9 +99,8 @@
     </ul>
   </nav>
   {% comment %} {% endif %} {% endcomment %}
-
-  
 </div>
+{% comment %} 추가3엔드 {% endcomment %}
 </div>
 
 {% endblock %}
