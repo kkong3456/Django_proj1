@@ -39,17 +39,18 @@ class ProductList(ListView):
     context_object_name = 'product_list'
    
     paginate_by = 3
-    ordering='register_date'
-    page_kwarg='page'
+    # ordering='register_date'
+    # page_kwarg='page'
 
-
+############# 추가1
     def get_queryset(self):     
         # print(f'self.request.GET is {self.request.GET.get(key="s")}')
         search_word=self.request.GET.get(key='s')
         if search_word:
-            return Product.objects.filter(name__contains=search_word)
+            return Product.objects.filter(name__contains=search_word).order_by('-register_date')
         else:
-            return Product.objects.all()
+            return Product.objects.all().order_by('-register_date')
+#############추가1엔드
       
 
 @method_decorator(admin_required, name='dispatch')
