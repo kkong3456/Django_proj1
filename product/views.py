@@ -37,7 +37,10 @@ class ProductList(ListView):
     model = Product
     template_name = 'product.html'
     context_object_name = 'product_list'
+   
     paginate_by = 3
+    ordering='register_date'
+    page_kwarg='page'
 
    
    
