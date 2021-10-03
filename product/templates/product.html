@@ -19,8 +19,8 @@
   }
 
   const do_search=()=>{
-    console.log('xxx is ','/product/s?='+jQuery("#xxx").val())
-    window.location.href='/product/s?='+jQuery("#button-addon2").val();
+    {% comment %} console.log('xxx is ','/product/?s='+jQuery("#xxx").val()) {% endcomment %}
+    window.location.href='/product/?s='+jQuery("#xxx").val();
   }
   {% comment %} $(document).ready(function () {
     jQuery('#button-addon2').click(function(){
@@ -33,8 +33,9 @@
 {% block contents %}
 <!--추가1-->
 <div class="input-group mt-2">
-  <input type="text" id='xxx' class="form-control mr-3" placeholder="찾는시려는 상품을 검색해보세요^^👀" aria-label="Recipient's username" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary px-5" onclick="do_search()" type="button" id="button-addon2">상품검색</button>
+  
+  <input type="text" id='xxx' class="form-control mr-3" placeholder="검색어^^👀" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary px-5" onclick="do_search()" type="button" id="button-addon2">검색</button>
 </div>
 
 <!--추가엔드-->
@@ -65,7 +66,7 @@
   </div>
 </div>
 <div class="row mt-5">
-  {% if is_paginated %}
+  {% comment %} {% if is_paginated %} {% endcomment %}
   <ul class="pagination">
     {% if page_obj.has_previous %}
     <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
@@ -85,7 +86,7 @@
     <li class="disabled"><span>&raquo;</span></li>
     {% endif %}
   </ul>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
 </div>
 
 {% endblock %}

@@ -38,29 +38,18 @@ class ProductList(ListView):
     template_name = 'product.html'
     context_object_name = 'product_list'
     paginate_by = 3
+
+   
    
 
-    def get_queryset(self):
-        print(f'self.request.GET is {self.request.GET}')
-        if self.request.method=='GET':
-            print('xxxxxxxxxxxxxxxxxx',dir(self.request.session))
-            print('yyyyyyyyyyyyyyyyyy',self.request.read())
-
-            # search_word=self.request.GET['s']
-            # print(f'search word is {search_word}')
+    def get_queryset(self):     
+        # print(f'self.request.GET is {self.request.GET.get(key="s")}')
+        search_word=self.request.GET.get(key='s')
+        if search_word:
+            return Product.objects.filter(name__contains=search_word)
         else:
-            qs=super().get_queryset()
-            print(f'qs is {qs}')
-            # search_word=self.request.GET.get('s',None)
-            # print(f'self.request.GET is {search_word}')
-            # if self.request.GET('s'):
-            #     print(f'Product is ,{Product.objects.filter()}')
-        return Product.objects.all()
-    
-     
-
-    # def get(self,request,*args,**kwargs):
-    #     return self.retrieve(request,*args,**kwargs)
+            return Product.objects.all()
+      
 
 @method_decorator(admin_required, name='dispatch')
 class ProductCreate(FormView):
